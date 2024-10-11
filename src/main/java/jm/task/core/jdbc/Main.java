@@ -1,29 +1,31 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
-import jm.task.core.jdbc.util.Util;
-import jm.task.core.jdbc.util.Util.*;
 
-import java.sql.Connection;
-import java.sql.Driver;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
+
 import java.sql.SQLException;
 
 
 public class Main {
+    private final static UserService userService = new UserServiceImpl();
     public static void main(String[] args) throws SQLException {
-        // реализуйте алгоритм здесь
-        UserDaoJDBCImpl usr1 = new UserDaoJDBCImpl();
-       // usr1.createUsersTable();
- /*       usr1.saveUser("Аграном", "-", (byte) 22);
-        usr1.saveUser("Пендальф", "Серый", (byte) 20);
-        usr1.saveUser("Лаговаз", "Безотцовщина", (byte) 15);
-        usr1.saveUser("Фёдор", "Сумкин", (byte) 33);*/
 
-        //usr1.getAllUsers();
-        System.out.println(usr1.getAllUsers());
-        //usr1.removeUserById(1);
-       // usr1.dropUsersTable();
+        // реализуйте алгоритм здесь
+        userService.createUsersTable();
+
+        userService.saveUser("Фёдор", "Сумкин", (byte) 53);
+        userService.saveUser("Агроном", "-", (byte) 112);
+        userService.saveUser("Лаговаз", "Безотцовщина", (byte) 126);
+        userService.saveUser("Пендальф", "Серый", (byte) 89);
+
+        userService.removeUserById(2);
+
+        userService.getAllUsers();
+
+        userService.cleanUsersTable();
+
+        userService.dropUsersTable();
 
     }
 }
